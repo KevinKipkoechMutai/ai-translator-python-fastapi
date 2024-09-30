@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from datetime import datetime
-from .database import engine, Base
+from sqlalchemy.orm import declarative_base
+from database import engine, Base
 
 
 class TranslationRequest(Base):
@@ -27,6 +28,5 @@ class IndividualTranslations(Base):
     translated_text = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
 
-# to ensure tables are created in the database
-# engine = create_engine("postgresql://aitranslatordb_owner:M09lAbirLKYW@ep-flat-waterfall-a5m8t0n9.us-east-2.aws.neon.tech/aitranslatordb?sslmode=require")
+
 Base.metadata.create_all(engine)

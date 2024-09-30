@@ -1,8 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+import os
+from dotenv import load_dotenv
 
-engine = create_engine("postgresql://aitranslatordb_owner:M09lAbirLKYW@ep-flat-waterfall-a5m8t0n9.us-east-2.aws.neon.tech/aitranslatordb?sslmode=require")
+load_dotenv()
+
+engine = create_engine(os.getenv("DATABASE_URL"))
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False,  bind=engine)
 
